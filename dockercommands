@@ -1,0 +1,25 @@
+
+
+
+rm -rf ~/code/BirdCallAuth/sagemaker-whisperseg/WhisperSeg/tweety
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 763104351884.dkr.ecr.us-west-2.amazonaws.com
+aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 339713187735.dkr.ecr.us-west-2.amazonaws.com
+docker build --platform linux/amd64 -t whisperseg:latest .
+docker tag whisperseg:latest 339713187735.dkr.ecr.us-west-2.amazonaws.com/whisperseg:latest
+docker push 339713187735.dkr.ecr.us-west-2.amazonaws.com/whisperseg:latest
+
+
+export DOCKER_CLI_EXPERIMENTAL=enabled
+docker buildx create --name mybuilder --use
+docker buildx inspect --bootstrap
+
+
+export bucket_name=oregon.birdconv.mp4
+export prefix=tweety/tmpihhc7rkOwUNJG4KF3
+export filename=tweety/tmpihhc7rkOwUNJG4KF3/1723222691-G11-G9.mp4
+
+
+export bucket_name=oregon.birdconv.mp4
+export prefix=tweety/gqvZ2mjDCocsW7y5WGm3
+export filename=tweety/gqvZ2mjDCocsW7y5WGm3/1722808824-Alistair-Susi-afraser@gmail.com.mp4
+
